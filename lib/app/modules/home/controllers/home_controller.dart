@@ -50,6 +50,7 @@ class HomeController extends GetxController {
   void toggleFavorite(String id) {
     int idx = products.indexWhere((element) => element.id == id);
     products[idx].isFavorite = !products[idx].isFavorite;
+    update();
   }
 
   @override
