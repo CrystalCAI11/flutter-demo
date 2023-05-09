@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../bindings/dice_binding.dart';
+import '../views/dice_view.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,28 +12,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      title: '中午吃什么',
+      initialRoute: '/home',
+      getPages: [
+        GetPage(name: '/home', page: () => const Home(), binding: DiceBinding())
+      ],
       theme: ThemeData(
         primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('First App'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text(
-                'Hello World!',
-              ),
-              Text(
-                'It\'s time to learn Flutter!',
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
