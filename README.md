@@ -1,3 +1,3 @@
-# flutter_application_1
+# flutter_demo
 
 A new Flutter project.
