@@ -80,6 +80,21 @@ class ExpensesController extends GetxController {
     selectedCategory.value = Category.food;
   }
 
+  removeExpense(int index, context) {
+    final removedExpense = registeredExpenses[index];
+    registeredExpenses.removeAt(index);
+    ScaffoldMessenger.of(context).clearSnackBars(); // 清除上一个snackbar
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: const Text('Expense deleted.'),
+        action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () => registeredExpenses.insert(index, removedExpense)),
+      ),
+    );
+  }
+
   @override
   void onClose() {
     titleController.dispose();

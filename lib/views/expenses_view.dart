@@ -10,17 +10,29 @@ class Expenses extends GetView<ExpensesController> {
   @override
   Widget build(BuildContext context) {
     void openAddOverlay() {
-      showModalBottomSheet(context: context, builder: (ctx) => NewExpense());
+      showModalBottomSheet(
+        context: context,
+        builder: (ctx) => NewExpense(),
+      );
     }
+
+    Widget emptyContent = const Center(
+      child: Text('No expenses found.'),
+    );
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter Expense Tracker'),
         actions: [
-          IconButton(onPressed: openAddOverlay, icon: const Icon(Icons.add))
+          IconButton(
+            onPressed: openAddOverlay,
+            icon: const Icon(Icons.add),
+          )
         ],
       ),
-      body:ExpensesList(),
+      body: Obx(() => controller.registeredExpenses.isEmpty
+          ? emptyContent
+          : ExpensesList()),
     );
   }
 }

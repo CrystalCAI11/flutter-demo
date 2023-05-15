@@ -9,10 +9,22 @@ class ExpensesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => ListView.builder(
-          itemCount: controller.registeredExpenses.length, // call几次itemBuilder
-          itemBuilder: (context, index) =>
-              ExpenseItem(controller.registeredExpenses[index]),
-        ));
+    return Obx(
+      () => ListView.builder(
+        padding: const EdgeInsets.only(top: 16),
+        itemCount: controller.registeredExpenses.length, // call几次itemBuilder
+        itemBuilder: (context, index) => Dismissible(
+          key: ValueKey(controller.registeredExpenses[index]),
+          background: Container(
+            color: Theme.of(context).colorScheme.error.withOpacity(0.75),
+            margin: Theme.of(context).cardTheme.margin,
+          ),
+          onDismissed: (direction) {
+            controller.removeExpense(index, context);
+          },
+          child: ExpenseItem(controller.registeredExpenses[index]),
+        ),
+      ),
+    );
   }
 }
