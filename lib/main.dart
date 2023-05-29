@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'bindings/expenses_binding.dart';
@@ -6,6 +7,11 @@ import 'views/expenses_view.dart';
 
 void main() {
   runApp(const MyApp());
+  // 只有竖屏模式
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]).then((value) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

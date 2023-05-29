@@ -11,6 +11,8 @@ class Expenses extends GetView<ExpensesController> {
   Widget build(BuildContext context) {
     void openAddOverlay() {
       showModalBottomSheet(
+        useSafeArea: true,
+        isScrollControlled: true,
         context: context,
         builder: (ctx) => NewExpense(),
       );
